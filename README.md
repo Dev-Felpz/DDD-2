@@ -11,11 +11,10 @@
 ### **2️⃣ Identificação dos Subdomínios**
 | **Subdomínio**              | **Descrição**                                                                                      | **Tipo**         |
 |-----------------------------|--------------------------------------------------------------------------------------------------|------------------|
-| Gestão de Consultas         | Gerencia o agendamento, consulta por vídeo e emissão de atestados e receitas.                   | Core Domain      |
-| Cadastro de Pacientes       | Gerencia o cadastro e informações pessoais e médicas dos pacientes.                             | Supporting       |
-| Gerenciamento de Médicos    | Cadastro e validação de médicos, incluindo suas licenças e horários disponíveis.                | Supporting       |
+| Gestão de Aluguéis         | Gerencia o agendamento, consulta por vídeo e emissão de atestados e receitas.                   | Core Domain      |
+| Cadastro de Usuário       | Gerencia o cadastro e informações pessoais e médicas dos pacientes.                             | Supporting       |
+| Gerenciamento de Usuários    | Cadastro e validação de médicos, incluindo suas licenças e horários disponíveis.                | Supporting       |
 | Pagamentos                  | Processa pagamentos e gerencia os repasses para médicos e clínicas.                            | Generic          |
-| Comunicação por Vídeo       | Realiza chamadas de vídeo durante as consultas.                                                | Generic          |
 | Autenticação de Usuários    | Gerencia login, permissões e segurança de acesso.                                              | Generic          |
 
 ---
@@ -46,10 +45,9 @@ Identifique os **Bounded Contexts** do projeto e criar um **Context Map**, defin
 
 | **Origem**               | **Destino**              | **Tipo de Relacionamento**       | **Explicação** |
 |--------------------------|-------------------------|--------------------------------|---------------|
-| Contexto de Consultas    | Contexto de Pagamentos  | **Customer-Supplier**          | O pagamento depende do status da consulta. |
-| Contexto de Cadastro     | Contexto de Consultas   | **Shared Kernel**              | Pacientes e médicos são compartilhados entre os dois contextos. |
-| Contexto de Comunicação  | Contexto de Consultas   | **Conformist**                 | O contexto de comunicação apenas consome dados da consulta para iniciar uma chamada de vídeo. |
-| Contexto de Pagamentos   | Contexto de Consultas   | **Anticorruption Layer (ACL)** | O sistema de consultas traduz dados financeiros sem impactar seu modelo de domínio. |
+| Contexto de Aluguéis   | Contexto de Pagamentos  | **Customer-Supplier**          | O pagamento depende do status da aluguel. |
+| Contexto de Cadastro     | Contexto de Aluguéis   | **Shared Kernel**              | Locadores e locatários são compartilhados entre os dois contextos. |
+| Contexto de Pagamentos   | Contexto de Aluguéis   | **Anticorruption Layer (ACL)** | O sistema de aluguel traduz dados financeiros sem impactar seu modelo de domínio. |
 
 📌 **Formato de Entrega:**  
 - O trabalho pode ser entregue em **Markdown (.md), PDF ou apresentação (PPT)**.  
